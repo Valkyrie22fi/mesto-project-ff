@@ -16,7 +16,7 @@ function createCard(name, link, deleteCallback) {
   cardElement.querySelector('.card__image').alt = name;
 
   deleteButton.addEventListener('click', () => {
-    deleteCard(cardElement)
+    deleteCallback(cardElement)
   });
   
   return cardElement;
@@ -25,7 +25,7 @@ function createCard(name, link, deleteCallback) {
 // @todo: Вывести карточки на страницу
 function addCardList() {
   initialCards.forEach((el) => {
-    cardsList.append(addCards(el.name, el.link)); 
+    cardsList.append(createCard(el.name, el.link, deleteCard))
   })
 };
 
