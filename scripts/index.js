@@ -7,7 +7,7 @@ const cardsList = content.querySelector('.places__list');
 const addButton = content.querySelector('.profile__add-button');
 
 // @todo: Функция создания карточки
-function addCards(name, link) {
+function createCard(name, link, deleteCallback) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const deleteButton = cardElement.querySelector('.card__delete-button');
 
