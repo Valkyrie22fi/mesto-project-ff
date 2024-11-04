@@ -38,14 +38,13 @@ const cardsList = content.querySelector('.places__list');
 const addButton = content.querySelector('.profile__add-button');
 const editButton = document.querySelector('.profile__edit-button');
 
-const popup_type_image = document.querySelector('.popup_type_image');
-const popup_type_edit = document.querySelector('.popup_type_edit');
-const popup_type_new_card = document.querySelector('.popup_type_new-card');
+const popupTypeImage = document.querySelector('.popup_type_image');
+const popupTypeEdit = document.querySelector('.popup_type_edit');
+const popupTypeNewCard = document.querySelector('.popup_type_new-card');
 
-const closeButtonPopupTypeEdit = popup_type_edit.querySelector('.popup__close');
-const closeButtonPopupTypeNewCard = popup_type_new_card.querySelector('.popup__close');
-const closeButtonPopupTypeImage = popup_type_image.querySelector('.popup__close');
-
+const closeButtonPopupTypeEdit = popupTypeEdit.querySelector('.popup__close');
+const closeButtonPopupTypeNewCard = popupTypeNewCard.querySelector('.popup__close');
+const closeButtonPopupTypeImage = popupTypeImage.querySelector('.popup__close');
 
 
 function createCard(name, link, deleteCallback) {
@@ -70,7 +69,7 @@ function addCardList() {
     let card = createCard(el.name, el.link, deleteCard)
     //открытие модального окна картинки
     card.addEventListener('click', function () {
-      openImage(popup_type_image, el);
+      openImage(popupTypeImage, el);
     });
 
     cardsList.append(card) 
@@ -85,73 +84,71 @@ function deleteCard(card) {
   card.remove(); 
 }; 
 
-function openPopup(event) {
+function openPopup(item) {
   "открыть попап"
-  event.classList.add('popup_is-opened');
+  item.classList.add('popup_is-opened');
+  closePopupEsc(item);
 }
 
-function openImage(event, element) {
+function openImage(item, element) {
   "открыть попап картинки"
-  openPopup(event);
-  event.querySelector('.popup__image').src = element.link;
-  event.querySelector('.popup__image').alt = element.name; 
-  event.querySelector('.popup__caption').textContent = element.name;
+  openPopup(item);
+  item.querySelector('.popup__image').src = element.link;
+  item.querySelector('.popup__image').alt = element.name; 
+  item.querySelector('.popup__caption').textContent = element.name;
 }
 
-function closePopup(event) {
+function closePopup(item) {
   "закрыть попап"
-  event.classList.remove('popup_is-opened');
+  item.classList.remove('popup_is-opened');
 }
 
-function closePopupEsc(event) {
+function closePopupEsc(item) {
   "закрыть попап по нажатию на Esc"
-  if(event.key === 'Escape') {
-    console.log(event.key)
-    closePopup(document.querySelector('.popup_is-opened'))
-  }
+  
+  document.addEventListener('keydown', function (evt) {
+    if(evt.key === 'Escape') {
+      item.classList.remove('popup_is-opened');
+    }
+  }); 
 }
 
-function closePopupOverlay(event) {
+function closePopupOverlay(item) {
   "закрыть попап кликом по оверлей"
-  event.addEventListener('click', function (evt) {
+  item.addEventListener('click', function (evt) {
     evt.target.classList.remove('popup_is-opened');
-    console.log(evt.target)
   }); 
 }
 
 
 // Модальное окно редактирования
 editButton.addEventListener('click', function () {
-  openPopup(popup_type_edit);
+  openPopup(popupTypeEdit);
 });
 
 closeButtonPopupTypeEdit.addEventListener('click', function () {
-  closePopup(popup_type_edit);
+  closePopup(popupTypeEdit);
 });
 
-document.querySelector('.popup').addEventListener('keydown', function (evt) {
-  console.log(evt)
-}); 
-
-closePopupOverlay(popup_type_edit);
+closePopupOverlay(popupTypeEdit);
 
 
 // Модальное окно добавления
 addButton.addEventListener('click', function () {
-  openPopup(popup_type_new_card);
+  openPopup(popupTypeNewCard);
+
 });
 
 closeButtonPopupTypeNewCard.addEventListener('click', function () {
-  closePopup(popup_type_new_card);
-  closePopupEsc(popup_type_new_card);
+  closePopup(popupTypeNewCard);
 });
 
-closePopupOverlay(popup_type_new_card);
+closePopupOverlay(popupTypeNewCard);
 
 
 // Модальное окно картинки
 closeButtonPopupTypeImage.addEventListener('click', function () {
-  closePopup(popup_type_image);
+  closePopup(popupTypeImage);
 });
 
-closePopupOverlay(popup_type_image);
+closePopupOverlay(popupTypeImage);
