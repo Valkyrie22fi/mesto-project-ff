@@ -29,11 +29,14 @@ const initialCards = [
 
 // @todo: Темплейт карточки 
 const cardTemplate = document.querySelector('#card-template').content; 
+
  
 // @todo: DOM узлы 
 const content = document.querySelector('.content'); 
 const cardsList = content.querySelector('.places__list'); 
 const addButton = content.querySelector('.profile__add-button'); 
+const popup_type_image = document.querySelector('.popup_type_image');
+
  
 // @todo: Функция создания карточки 
 function createCard(name, link, deleteCallback) { 
@@ -47,6 +50,9 @@ function createCard(name, link, deleteCallback) {
   deleteButton.addEventListener('click', () => { 
     deleteCallback(cardElement) 
   }); 
+
+  // функция открытия попапа при клике на картинку
+
    
   return cardElement; 
 } 
@@ -54,11 +60,28 @@ function createCard(name, link, deleteCallback) {
 // @todo: Вывести карточки на страницу 
 function addCardList() { 
   initialCards.forEach((el) => { 
-    cardsList.append(createCard(el.name, el.link, deleteCard)) 
+    let card = createCard(el.name, el.link, deleteCard)
+    //открытие модального окна картинки
+    card.addEventListener('click', function () {
+      popup_type_image.classList.add("popup_is-opened")
+      popup_type_image.querySelector('.popup__image').src = el.link;
+      popup_type_image.querySelector('.popup__image').alt = el.name; 
+      popup_type_image.querySelector('.popup__caption').textContent = el.name; 
+    });
+
+    cardsList.append(card) 
   }) 
 }; 
- 
 addCardList() 
+
+//закрытие модального окна картинки
+let close_button_popup_type_image = popup_type_image.querySelector('.popup__close');
+
+close_button_popup_type_image.addEventListener('click', function () {
+  popup_type_image.classList.remove("popup_is-opened");
+});
+
+
  
 // @todo: Функция удаления карточки 
 function deleteCard(card) { 
@@ -76,9 +99,6 @@ function close(event) {
 }
 
 // Функция закрытия по Esc
-
-
-
 function closeEsc(event) {
   if(event.key === 'Escape') {
     console.log(event.key)
@@ -86,11 +106,13 @@ function closeEsc(event) {
   }
 }
 
+
+
+
 //открытие модального окна редактирования
 let edit_button = document.querySelector('.profile__edit-button');
 let popup_type_edit = document.querySelector('.popup_type_edit');
 let close_button_popup_type_edit = popup_type_edit.querySelector('.popup__close');
-
 
 edit_button.addEventListener('click', function () {
   open(popup_type_edit);
@@ -100,8 +122,8 @@ close_button_popup_type_edit.addEventListener('click', function () {
   close(popup_type_edit);
 });
 
-document.querySelector('.popup').addEventListener('keydown', function () {
-  console.log('На что ни нажми — я появлюсь');
+document.querySelector('.popup').addEventListener('keydown', function (evt) {
+  console.log(evt)
 }); 
 
 
@@ -110,7 +132,6 @@ document.querySelector('.popup').addEventListener('keydown', function () {
 let add_button = document.querySelector('.profile__add-button');
 let popup_type_new_card = document.querySelector('.popup_type_new-card');
 let close_button_popup_type_new_card = popup_type_new_card.querySelector('.popup__close');
-
 
 add_button.addEventListener('click', function () {
   open(popup_type_new_card);
@@ -121,19 +142,7 @@ close_button_popup_type_new_card.addEventListener('click', function () {
   closeEsc(popup_type_new_card);
 });
 
-//открытие модального окна картинки
-let image_button = document.querySelector('.card__image');
-let popup_type_image = document.querySelector('.popup_type_image');
-let close_button_popup_type_image = popup_type_image.querySelector('.popup__close');
 
-
-image_button.addEventListener('click', function () {
-  popup_type_image.classList.add("popup_is-opened")
-});
-
-close_button_popup_type_image.addEventListener('click', function () {
-  popup_type_image.classList.remove("popup_is-opened");
-});
 
 
 //закрытие кликом по оверлей
