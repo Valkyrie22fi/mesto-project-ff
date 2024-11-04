@@ -51,9 +51,6 @@ function createCard(name, link, deleteCallback) {
     deleteCallback(cardElement) 
   }); 
 
-  // функция открытия попапа при клике на картинку
-
-   
   return cardElement; 
 } 
  
@@ -63,10 +60,7 @@ function addCardList() {
     let card = createCard(el.name, el.link, deleteCard)
     //открытие модального окна картинки
     card.addEventListener('click', function () {
-      popup_type_image.classList.add("popup_is-opened")
-      popup_type_image.querySelector('.popup__image').src = el.link;
-      popup_type_image.querySelector('.popup__image').alt = el.name; 
-      popup_type_image.querySelector('.popup__caption').textContent = el.name; 
+      openImage(popup_type_image, el);
     });
 
     cardsList.append(card) 
@@ -78,7 +72,7 @@ addCardList()
 let close_button_popup_type_image = popup_type_image.querySelector('.popup__close');
 
 close_button_popup_type_image.addEventListener('click', function () {
-  popup_type_image.classList.remove("popup_is-opened");
+  close(popup_type_image);
 });
 
 
@@ -91,6 +85,14 @@ function deleteCard(card) {
 // Функция открытия popup
 function open(event) {
   event.classList.add('popup_is-opened');
+}
+
+// Функция открытия модального окна картинки
+function openImage(event, element) {
+  open(event);
+  event.querySelector('.popup__image').src = element.link;
+  event.querySelector('.popup__image').alt = element.name; 
+  event.querySelector('.popup__caption').textContent = element.name;
 }
 
 // Функция закрытия popup
