@@ -121,6 +121,7 @@ function openImage(item, element) {
 
 function closePopup(item) {
   "закрыть попап"
+  item.classList.add('popup_is-animated');
   item.classList.remove('popup_is-opened');
 }
 
