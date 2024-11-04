@@ -10,12 +10,12 @@ closeButtonPopupTypeImage.addEventListener('click', function () {
 
 closePopupOverlay(popupTypeImage);
 
-function openImage(item, element) {
+function openImage(item, link, name) {
   "открыть попап картинки"
   openPopup(item);
-  item.querySelector('.popup__image').src = element.link;
-  item.querySelector('.popup__image').alt = element.name; 
-  item.querySelector('.popup__caption').textContent = element.name;
+  item.querySelector('.popup__image').src = link;
+  item.querySelector('.popup__image').alt = name; 
+  item.querySelector('.popup__caption').textContent = name;
 }
 
-export { openImage }
+export { openImage, popupTypeImage }

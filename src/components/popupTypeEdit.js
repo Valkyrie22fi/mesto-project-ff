@@ -10,8 +10,6 @@ const jobInput = document.querySelector('.popup__input_type_description');
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 
-
-
 editButton.addEventListener('click', function () {
   openPopup(popupTypeEdit);
   nameInput.value = profileTitle.textContent;
