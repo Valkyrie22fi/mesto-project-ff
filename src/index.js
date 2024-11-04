@@ -27,19 +27,29 @@ const initialCards = [
   }
 ];
 
-// @todo: Темплейт карточки 
+// Темплейт карточки 
 const cardTemplate = document.querySelector('#card-template').content; 
 
  
-// @todo: DOM узлы 
+// DOM узлы 
 const content = document.querySelector('.content'); 
-const cardsList = content.querySelector('.places__list'); 
-const addButton = content.querySelector('.profile__add-button'); 
-const popup_type_image = document.querySelector('.popup_type_image');
 
- 
-// @todo: Функция создания карточки 
-function createCard(name, link, deleteCallback) { 
+const cardsList = content.querySelector('.places__list'); 
+const addButton = content.querySelector('.profile__add-button');
+const editButton = document.querySelector('.profile__edit-button');
+
+const popup_type_image = document.querySelector('.popup_type_image');
+const popup_type_edit = document.querySelector('.popup_type_edit');
+const popup_type_new_card = document.querySelector('.popup_type_new-card');
+
+const closeButtonPopupTypeEdit = popup_type_edit.querySelector('.popup__close');
+const closeButtonPopupTypeNewCard = popup_type_new_card.querySelector('.popup__close');
+const closeButtonPopupTypeImage = popup_type_image.querySelector('.popup__close');
+
+
+
+function createCard(name, link, deleteCallback) {
+  "создать и вернуть элемент карточки"
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true); 
   const deleteButton = cardElement.querySelector('.card__delete-button'); 
  
@@ -54,8 +64,8 @@ function createCard(name, link, deleteCallback) {
   return cardElement; 
 } 
  
-// @todo: Вывести карточки на страницу 
-function addCardList() { 
+function addCardList() {
+  "вывести все карточки на страницу"
   initialCards.forEach((el) => { 
     let card = createCard(el.name, el.link, deleteCard)
     //открытие модального окна картинки
@@ -66,95 +76,82 @@ function addCardList() {
     cardsList.append(card) 
   }) 
 }; 
+
+// Вывод карточек на страницу 
 addCardList() 
-
-//закрытие модального окна картинки
-let close_button_popup_type_image = popup_type_image.querySelector('.popup__close');
-
-close_button_popup_type_image.addEventListener('click', function () {
-  close(popup_type_image);
-});
-
-
  
-// @todo: Функция удаления карточки 
-function deleteCard(card) { 
+function deleteCard(card) {
+  "Удалить карточку"
   card.remove(); 
 }; 
 
-// Функция открытия popup
-function open(event) {
+function openPopup(event) {
+  "открыть попап"
   event.classList.add('popup_is-opened');
 }
 
-// Функция открытия модального окна картинки
 function openImage(event, element) {
-  open(event);
+  "открыть попап картинки"
+  openPopup(event);
   event.querySelector('.popup__image').src = element.link;
   event.querySelector('.popup__image').alt = element.name; 
   event.querySelector('.popup__caption').textContent = element.name;
 }
 
-// Функция закрытия popup
-function close(event) {
+function closePopup(event) {
+  "закрыть попап"
   event.classList.remove('popup_is-opened');
 }
 
-// Функция закрытия по Esc
-function closeEsc(event) {
+function closePopupEsc(event) {
+  "закрыть попап по нажатию на Esc"
   if(event.key === 'Escape') {
     console.log(event.key)
-    close(document.querySelector('.popup_is-opened'))
+    closePopup(document.querySelector('.popup_is-opened'))
   }
 }
 
+function closePopupOverlay(event) {
+  "закрыть попап кликом по оверлей"
+  event.addEventListener('click', function (evt) {
+    evt.target.classList.remove('popup_is-opened');
+    console.log(evt.target)
+  }); 
+}
 
 
-
-//открытие модального окна редактирования
-let edit_button = document.querySelector('.profile__edit-button');
-let popup_type_edit = document.querySelector('.popup_type_edit');
-let close_button_popup_type_edit = popup_type_edit.querySelector('.popup__close');
-
-edit_button.addEventListener('click', function () {
-  open(popup_type_edit);
+// Модальное окно редактирования
+editButton.addEventListener('click', function () {
+  openPopup(popup_type_edit);
 });
 
-close_button_popup_type_edit.addEventListener('click', function () {
-  close(popup_type_edit);
+closeButtonPopupTypeEdit.addEventListener('click', function () {
+  closePopup(popup_type_edit);
 });
 
 document.querySelector('.popup').addEventListener('keydown', function (evt) {
   console.log(evt)
 }); 
 
+closePopupOverlay(popup_type_edit);
 
 
-//открытие модального окна добавления
-let add_button = document.querySelector('.profile__add-button');
-let popup_type_new_card = document.querySelector('.popup_type_new-card');
-let close_button_popup_type_new_card = popup_type_new_card.querySelector('.popup__close');
-
-add_button.addEventListener('click', function () {
-  open(popup_type_new_card);
+// Модальное окно добавления
+addButton.addEventListener('click', function () {
+  openPopup(popup_type_new_card);
 });
 
-close_button_popup_type_new_card.addEventListener('click', function () {
-  close(popup_type_new_card);
-  closeEsc(popup_type_new_card);
+closeButtonPopupTypeNewCard.addEventListener('click', function () {
+  closePopup(popup_type_new_card);
+  closePopupEsc(popup_type_new_card);
 });
 
+closePopupOverlay(popup_type_new_card);
 
 
+// Модальное окно картинки
+closeButtonPopupTypeImage.addEventListener('click', function () {
+  closePopup(popup_type_image);
+});
 
-//закрытие кликом по оверлей
-let ovarlay = document.querySelector('.popup');
-
-// ovarlay.addEventListener('click', function () {
-//   ovarlay.classList.remove("popup_is-opened");
-// });
-
-ovarlay.addEventListener('click', function (evt) {
-  evt.target.classList.remove('popup_is-opened');
-  console.log(evt)
-}); 
+closePopupOverlay(popup_type_image);
