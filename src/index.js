@@ -36,7 +36,7 @@ const content = document.querySelector('.content');
 
 const cardsList = content.querySelector('.places__list'); 
 const addButton = content.querySelector('.profile__add-button');
-const editButton = document.querySelector('.profile__edit-button');
+const editButton = content.querySelector('.profile__edit-button');
 
 const popupTypeImage = document.querySelector('.popup_type_image');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
@@ -46,6 +46,24 @@ const closeButtonPopupTypeEdit = popupTypeEdit.querySelector('.popup__close');
 const closeButtonPopupTypeNewCard = popupTypeNewCard.querySelector('.popup__close');
 const closeButtonPopupTypeImage = popupTypeImage.querySelector('.popup__close');
 
+const profileTitle = document.querySelector('.profile__title');
+const profileDescription = document.querySelector('.profile__description');
+
+const formProfile = document.querySelector('[name="edit-profile"]');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_description');
+
+const formNewCard = document.querySelector('[name="new-place"]');
+const newPlaceNameInput = document.querySelector('.popup__input_type_card-name');
+const newPlaceLinkInput = document.querySelector('.popup__input_type_url');
+
+function likeButton(item) {
+  "поставить лайк на карточку"
+  const likeButton = item.querySelector('.card__like-button');
+  likeButton.addEventListener('click', function () {
+  likeButton.classList.add('card__like-button_is-active');
+});
+}
 
 function createCard(name, link, deleteCallback) {
   "создать и вернуть элемент карточки"
@@ -54,7 +72,7 @@ function createCard(name, link, deleteCallback) {
  
   cardElement.querySelector('.card__title').textContent = name; 
   cardElement.querySelector('.card__image').src = link; 
-  cardElement.querySelector('.card__image').alt = name; 
+  cardElement.querySelector('.card__image').alt = name;
  
   deleteButton.addEventListener('click', () => { 
     deleteCallback(cardElement) 
@@ -68,9 +86,12 @@ function addCardList() {
   initialCards.forEach((el) => { 
     let card = createCard(el.name, el.link, deleteCard)
     //открытие модального окна картинки
-    card.addEventListener('click', function () {
+    let cardImage = card.querySelector('.card__image')
+    cardImage.addEventListener('click', function () {
       openImage(popupTypeImage, el);
     });
+
+    likeButton(card);
 
     cardsList.append(card) 
   }) 
@@ -124,6 +145,8 @@ function closePopupOverlay(item) {
 // Модальное окно редактирования
 editButton.addEventListener('click', function () {
   openPopup(popupTypeEdit);
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileDescription.textContent;
 });
 
 closeButtonPopupTypeEdit.addEventListener('click', function () {
@@ -132,11 +155,20 @@ closeButtonPopupTypeEdit.addEventListener('click', function () {
 
 closePopupOverlay(popupTypeEdit);
 
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  let name = nameInput.value;
+  let job = jobInput.value;  
+  profileTitle.textContent = name;
+  profileDescription.textContent = job;
+  closePopup(popupTypeEdit);
+}
+formProfile.addEventListener('submit', handleFormSubmit); 
+
 
 // Модальное окно добавления
 addButton.addEventListener('click', function () {
   openPopup(popupTypeNewCard);
-
 });
 
 closeButtonPopupTypeNewCard.addEventListener('click', function () {
@@ -144,6 +176,23 @@ closeButtonPopupTypeNewCard.addEventListener('click', function () {
 });
 
 closePopupOverlay(popupTypeNewCard);
+
+function addCard(evt) {
+  "добавить карточку в начало списка"
+  evt.preventDefault();
+  let name = newPlaceNameInput.value;
+  let link = newPlaceLinkInput.value;
+  let card = createCard(name, link, deleteCard)
+  //открытие модального окна картинки
+  let cardImage = card.querySelector('.card__image')
+  cardImage.addEventListener('click', function () {
+    openImage(popupTypeImage, link);
+  });
+
+  cardsList.prepend(card);
+  closePopup(popupTypeNewCard);
+}
+formNewCard.addEventListener('submit', addCard); 
 
 
 // Модальное окно картинки
