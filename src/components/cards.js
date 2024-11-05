@@ -1,4 +1,4 @@
-import { popupTypeImage, openImage} from './popupTypeImage.js'
+import { openImage} from './popupTypeImage.js'
 import { createCard, deleteCard, likeButton, } from './card.js'
 
 const initialCards = [

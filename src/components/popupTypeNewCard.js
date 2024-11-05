@@ -40,6 +40,8 @@ function addCard(evt) {
    likeButton(card);
   cardsList.prepend(card);
   closeModal(popupTypeNewCard);
+  newPlaceNameInput.value = "";
+  newPlaceLinkInput.value = "";
 }
 
 export { openPopupTypeNewCard, closePopupTypeNewCard, popupTypeNewCard, formNewCard, addCard }
