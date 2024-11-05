@@ -1,5 +1,5 @@
 import { openModal, closeModal  } from '../index.js'
-import { openImage, popupTypeImage } from './popupTypeImage.js';
+import { openImage } from './popupTypeImage.js';
 import { createCard, deleteCard, likeButton, cardsList } from './card.js';
 
 // Модальное окно добавления
@@ -33,7 +33,7 @@ function addCard(evt) {
   //открытие модального окна картинки
   let cardImage = card.querySelector('.card__image')
   cardImage.addEventListener('click', function () {
-    openImage(popupTypeImage, link, name);
+    openImage(link, name);
   });
   likeButton(card);
   cardsList.prepend(card);

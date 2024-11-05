@@ -26,7 +26,7 @@ function closePopupTypeEdit() {
   });
 }
 
-function handleFormSubmit(evt) {
+function editFormSubmit(evt) {
   evt.preventDefault();
   let name = nameInput.value;
   let job = jobInput.value;  
@@ -35,4 +35,4 @@ function handleFormSubmit(evt) {
   closeModal(popupTypeEdit);
 }
 
-export { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit }
+export { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, editFormSubmit as handleFormSubmit }
