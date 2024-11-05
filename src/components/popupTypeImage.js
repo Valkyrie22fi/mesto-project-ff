@@ -4,11 +4,12 @@ import { openPopup, closePopup, closePopupOverlay} from '../index.js'
 const popupTypeImage = document.querySelector('.popup_type_image');
 const closeButtonPopupTypeImage = popupTypeImage.querySelector('.popup__close');
 
-closeButtonPopupTypeImage.addEventListener('click', function () {
-  closePopup(popupTypeImage);
-});
-
-closePopupOverlay(popupTypeImage);
+function closePopupTypeImage() {
+  "закрыть попап редактирования"
+  closeButtonPopupTypeImage.addEventListener('click', function () {
+    closePopup(popupTypeImage);
+  });
+}
 
 function openImage(item, link, name) {
   "открыть попап картинки"
@@ -18,4 +19,4 @@ function openImage(item, link, name) {
   item.querySelector('.popup__caption').textContent = name;
 }
 
-export { openImage, popupTypeImage }
+export { openImage, closePopupTypeImage, popupTypeImage }

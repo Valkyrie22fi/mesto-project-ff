@@ -1,7 +1,7 @@
 import './pages/index.css';
 import { addCardList } from './components/card.js';
 import { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit } from './components/popupTypeEdit.js';
-import './components/popupTypeImage.js';
+import { openImage, closePopupTypeImage, popupTypeImage } from './components/popupTypeImage.js';
 import { openPopupTypeNewCard, closePopupTypeNewCard, popupTypeNewCard, formNewCard, addCard } from './components/popupTypeNewCard.js'
 
 export function openPopup(item) {
@@ -12,7 +12,6 @@ export function openPopup(item) {
 
 export function closePopup(item) {
   "закрыть попап"
-  item.classList.add('popup_is-animated');
   item.classList.remove('popup_is-opened');
 }
 
@@ -53,3 +52,8 @@ closePopupTypeNewCard()
 closePopupOverlay(popupTypeNewCard);
 // Обработка формы
 formNewCard.addEventListener('submit', addCard); 
+
+// Попап открытия картинки по клику
+// Закрытие
+closePopupTypeImage() 
+closePopupOverlay(popupTypeImage);

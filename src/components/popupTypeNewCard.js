@@ -1,4 +1,4 @@
-import { openPopup, closePopup, closePopupOverlay  } from '../index.js'
+import { openPopup, closePopup  } from '../index.js'
 import { openImage, popupTypeImage } from './popupTypeImage.js';
 import { createCard, deleteCard, likeButton, cardsList } from './card.js';
 
