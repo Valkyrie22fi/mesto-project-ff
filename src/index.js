@@ -1,16 +1,16 @@
 import './pages/index.css';
 import { addCardList } from './components/card.js';
 import { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit } from './components/popupTypeEdit.js';
-import { openImage, closePopupTypeImage, popupTypeImage } from './components/popupTypeImage.js';
 import { openPopupTypeNewCard, closePopupTypeNewCard, popupTypeNewCard, formNewCard, addCard } from './components/popupTypeNewCard.js'
+import { openImage, closePopupTypeImage, popupTypeImage } from './components/popupTypeImage.js';
 
-export function openPopup(item) {
+export function openModal(item) {
   "открыть попап"
   item.classList.add('popup_is-opened');
   closePopupEsc(item);
 }
 
-export function closePopup(item) {
+export function closeModal(item) {
   "закрыть попап"
   item.classList.remove('popup_is-opened');
 }

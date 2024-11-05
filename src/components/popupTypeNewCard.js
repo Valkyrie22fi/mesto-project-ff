@@ -1,4 +1,4 @@
-import { openPopup, closePopup  } from '../index.js'
+import { openModal, closeModal  } from '../index.js'
 import { openImage, popupTypeImage } from './popupTypeImage.js';
 import { createCard, deleteCard, likeButton, cardsList } from './card.js';
 
@@ -13,14 +13,14 @@ const newPlaceLinkInput = document.querySelector('.popup__input_type_url');
 function openPopupTypeNewCard(item) {
   "открыть попап добавления новой карточки"
   addButton.addEventListener('click', function () {
-    openPopup(popupTypeNewCard);
+    openModal(popupTypeNewCard);
   });
 }
 
 function closePopupTypeNewCard() {
   "закрыть попап добавления новой карточки"
   closeButtonPopupTypeNewCard.addEventListener('click', function () {
-    closePopup(popupTypeNewCard);
+    closeModal(popupTypeNewCard);
   });
 }
 
@@ -37,7 +37,7 @@ function addCard(evt) {
   });
   likeButton(card);
   cardsList.prepend(card);
-  closePopup(popupTypeNewCard);
+  closeModal(popupTypeNewCard);
 }
 
 export { openPopupTypeNewCard, closePopupTypeNewCard, popupTypeNewCard, formNewCard, addCard }

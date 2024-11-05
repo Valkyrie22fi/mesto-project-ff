@@ -1,4 +1,4 @@
-import { openPopup, closePopup } from '../index.js'
+import { openModal, closeModal } from '../index.js'
 
 // Модальное окно редактирования
 const editButton = document.querySelector('.profile__edit-button');
@@ -13,7 +13,7 @@ const profileDescription = document.querySelector('.profile__description');
 function openPopupTypeEdit(item) {
   "открыть попап редактирования"
   editButton.addEventListener('click', function () {
-    openPopup(popupTypeEdit);
+    openModal(popupTypeEdit);
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileDescription.textContent;
   });
@@ -22,7 +22,7 @@ function openPopupTypeEdit(item) {
 function closePopupTypeEdit() {
   "закрыть попап редактирования"
   closeButtonPopupTypeEdit.addEventListener('click', function () {
-    closePopup(popupTypeEdit);
+    closeModal(popupTypeEdit);
   });
 }
 
@@ -32,7 +32,7 @@ function handleFormSubmit(evt) {
   let job = jobInput.value;  
   profileTitle.textContent = name;
   profileDescription.textContent = job;
-  closePopup(popupTypeEdit);
+  closeModal(popupTypeEdit);
 }
 
 export { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit }
