@@ -33,9 +33,9 @@ const cardsList = document.querySelector('.places__list');
 // вывести все карточки на страницу 
 function addCardList() {
   initialCards.forEach((el) => { 
-    let card = createCard(el.name, el.link, deleteCard)
+    const card = createCard(el.name, el.link, deleteCard)
     //открытие модального окна картинки
-    let cardImage = card.querySelector('.card__image')
+    const cardImage = card.querySelector('.card__image')
     cardImage.addEventListener('click', function () {
       openImage(el.name, el.link );
     });

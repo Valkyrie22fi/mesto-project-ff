@@ -29,8 +29,8 @@ function closePopupTypeEdit() {
 // обработка формы редактирования
 function editFormSubmit(evt) {
   evt.preventDefault();
-  let name = nameInput.value;
-  let job = jobInput.value;  
+  const name = nameInput.value;
+  const job = jobInput.value;  
   profileTitle.textContent = name;
   profileDescription.textContent = job;
   closeModal(popupTypeEdit);

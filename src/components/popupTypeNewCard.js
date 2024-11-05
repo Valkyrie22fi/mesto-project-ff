@@ -28,12 +28,12 @@ function closePopupTypeNewCard() {
 // добавить карточку в начало списка
 function addCard(evt) {
   evt.preventDefault();
-  let name = newPlaceNameInput.value;
-  let link = newPlaceLinkInput.value;
+  const name = newPlaceNameInput.value;
+  const link = newPlaceLinkInput.value;
 
-  let card = createCard(name, link, deleteCard)
+  const card = createCard(name, link, deleteCard)
    //открытие модального окна картинки
-   let cardImage = card.querySelector('.card__image')
+   const cardImage = card.querySelector('.card__image')
    cardImage.addEventListener('click', function () {
      openImage(name, link);
    });
