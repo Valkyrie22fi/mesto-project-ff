@@ -1,6 +1,7 @@
 import { openModal, closeModal  } from '../index.js'
-import { openImage } from './popupTypeImage.js';
-import { createCard, deleteCard, likeButton, cardsList } from './card.js';
+import { openImage, popupTypeImage } from './popupTypeImage.js';
+import { createCard, deleteCard, likeButton} from './card.js';
+import { cardsList } from './cards.js';
 
 // Модальное окно добавления
 const addButton = document.querySelector('.profile__add-button');
@@ -29,13 +30,14 @@ function addCard(evt) {
   evt.preventDefault();
   let name = newPlaceNameInput.value;
   let link = newPlaceLinkInput.value;
+
   let card = createCard(name, link, deleteCard)
-  //открытие модального окна картинки
-  let cardImage = card.querySelector('.card__image')
-  cardImage.addEventListener('click', function () {
-    openImage(link, name);
-  });
-  likeButton(card);
+   //открытие модального окна картинки
+   let cardImage = card.querySelector('.card__image')
+   cardImage.addEventListener('click', function () {
+     openImage(popupTypeImage, link, name);
+   });
+   likeButton(card);
   cardsList.prepend(card);
   closeModal(popupTypeNewCard);
 }

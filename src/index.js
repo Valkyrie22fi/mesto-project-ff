@@ -1,5 +1,5 @@
 import './pages/index.css';
-import { addCardList } from './components/card.js';
+import { addCardList } from './components/cards.js';
 import { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit } from './components/popupTypeEdit.js';
 import { openPopupTypeNewCard, closePopupTypeNewCard, popupTypeNewCard, formNewCard, addCard } from './components/popupTypeNewCard.js'
 import { openImage, closePopupTypeImage, popupTypeImage } from './components/popupTypeImage.js';
