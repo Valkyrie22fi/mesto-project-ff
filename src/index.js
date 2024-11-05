@@ -1,6 +1,6 @@
 import './pages/index.css';
 import { addCardList } from './components/card.js';
-import './components/popupTypeEdit.js';
+import { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit } from './components/popupTypeEdit.js';
 import './components/popupTypeImage.js';
 import './components/popupTypeNewCard.js'
 
@@ -35,3 +35,12 @@ export function closePopupOverlay(item) {
 
 // Вывод карточек на страницу 
 addCardList() 
+
+// Попап редактирования
+// Открытие
+openPopupTypeEdit() 
+// Закрытие
+closePopupTypeEdit() 
+closePopupOverlay(popupTypeEdit);
+// Обработка формы
+formProfile.addEventListener('submit', handleFormSubmit); 

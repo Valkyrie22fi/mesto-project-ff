@@ -1,4 +1,4 @@
-import { openPopup, closePopup, closePopupOverlay } from '../index.js'
+import { openPopup, closePopup } from '../index.js'
 
 // Модальное окно редактирования
 const editButton = document.querySelector('.profile__edit-button');
@@ -10,17 +10,21 @@ const jobInput = document.querySelector('.popup__input_type_description');
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 
-editButton.addEventListener('click', function () {
-  openPopup(popupTypeEdit);
-  nameInput.value = profileTitle.textContent;
-  jobInput.value = profileDescription.textContent;
-});
+function openPopupTypeEdit(item) {
+  "открыть попап редактирования"
+  editButton.addEventListener('click', function () {
+    openPopup(popupTypeEdit);
+    nameInput.value = profileTitle.textContent;
+    jobInput.value = profileDescription.textContent;
+  });
+}
 
-closeButtonPopupTypeEdit.addEventListener('click', function () {
-  closePopup(popupTypeEdit);
-});
-
-closePopupOverlay(popupTypeEdit);
+function closePopupTypeEdit() {
+  "закрыть попап редактирования"
+  closeButtonPopupTypeEdit.addEventListener('click', function () {
+    closePopup(popupTypeEdit);
+  });
+}
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -30,4 +34,5 @@ function handleFormSubmit(evt) {
   profileDescription.textContent = job;
   closePopup(popupTypeEdit);
 }
-formProfile.addEventListener('submit', handleFormSubmit); 
+
+export { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit }
