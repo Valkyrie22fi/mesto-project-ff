@@ -13,22 +13,18 @@ export function openModal(item) {
 export function closeModal(item) {
   "закрыть попап"
   item.classList.remove('popup_is-opened');
+  item.addEventListener('click', function (evt) {
+    evt.target.classList.remove('popup_is-opened');
+  }); 
+
 }
 
 function closePopupEsc(item) {
   "закрыть попап по нажатию на Esc"
-  
   document.addEventListener('keydown', function (evt) {
     if(evt.key === 'Escape') {
       item.classList.remove('popup_is-opened');
     }
-  }); 
-}
-
-export function closePopupOverlay(item) {
-  "закрыть попап кликом по оверлей"
-  item.addEventListener('click', function (evt) {
-    evt.target.classList.remove('popup_is-opened');
   }); 
 }
 
@@ -41,7 +37,7 @@ addCardList()
 openPopupTypeEdit() 
 // Закрытие
 closePopupTypeEdit() 
-closePopupOverlay(popupTypeEdit);
+closeModal(popupTypeEdit);
 // Обработка формы
 formProfile.addEventListener('submit', handleFormSubmit); 
 
@@ -50,11 +46,11 @@ formProfile.addEventListener('submit', handleFormSubmit);
 openPopupTypeNewCard() 
 // Закрытие
 closePopupTypeNewCard() 
-closePopupOverlay(popupTypeNewCard);
+closeModal(popupTypeNewCard);
 // Обработка формы
 formNewCard.addEventListener('submit', addCard); 
 
 // Попап открытия картинки по клику
 // Закрытие
 closePopupTypeImage() 
-closePopupOverlay(popupTypeImage);
+closeModal(popupTypeImage);
