@@ -1,5 +1,5 @@
 import { openModal, closeModal  } from '../index.js'
-import { openImage, popupTypeImage } from './popupTypeImage.js';
+import { openImage } from './popupTypeImage.js';
 import { createCard, deleteCard, likeButton} from './card.js';
 import { cardsList } from './cards.js';
 
@@ -11,22 +11,22 @@ const formNewCard = document.querySelector('[name="new-place"]');
 const newPlaceNameInput = document.querySelector('.popup__input_type_card-name');
 const newPlaceLinkInput = document.querySelector('.popup__input_type_url');
 
+// открыть попап добавления новой карточки
 function openPopupTypeNewCard(item) {
-  "открыть попап добавления новой карточки"
   addButton.addEventListener('click', function () {
     openModal(popupTypeNewCard);
   });
 }
 
+// закрыть попап добавления новой карточки
 function closePopupTypeNewCard() {
-  "закрыть попап добавления новой карточки"
   closeButtonPopupTypeNewCard.addEventListener('click', function () {
     closeModal(popupTypeNewCard);
   });
 }
 
+// добавить карточку в начало списка
 function addCard(evt) {
-  "добавить карточку в начало списка"
   evt.preventDefault();
   let name = newPlaceNameInput.value;
   let link = newPlaceLinkInput.value;
@@ -35,7 +35,7 @@ function addCard(evt) {
    //открытие модального окна картинки
    let cardImage = card.querySelector('.card__image')
    cardImage.addEventListener('click', function () {
-     openImage(popupTypeImage, link, name);
+     openImage(name, link);
    });
    likeButton(card);
   cardsList.prepend(card);

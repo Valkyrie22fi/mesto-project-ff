@@ -30,14 +30,14 @@ const initialCards = [
 
 const cardsList = document.querySelector('.places__list'); 
 
+// вывести все карточки на страницу 
 function addCardList() {
-  "вывести все карточки на страницу"
   initialCards.forEach((el) => { 
     let card = createCard(el.name, el.link, deleteCard)
     //открытие модального окна картинки
     let cardImage = card.querySelector('.card__image')
     cardImage.addEventListener('click', function () {
-      openImage(popupTypeImage, el.link, el.name );
+      openImage(el.name, el.link );
     });
 
     likeButton(card);

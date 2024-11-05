@@ -2,16 +2,16 @@ import './pages/index.css';
 import { addCardList } from './components/cards.js';
 import { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit } from './components/popupTypeEdit.js';
 import { openPopupTypeNewCard, closePopupTypeNewCard, popupTypeNewCard, formNewCard, addCard } from './components/popupTypeNewCard.js'
-import { openImage, closePopupTypeImage, popupTypeImage } from './components/popupTypeImage.js';
+import { closePopupTypeImage, popupTypeImage } from './components/popupTypeImage.js';
 
+// открыть попап
 export function openModal(item) {
-  "открыть попап"
   item.classList.add('popup_is-opened', 'popup_is-animated');
   closePopupEsc(item);
 }
 
+// закрыть попап
 export function closeModal(item) {
-  "закрыть попап"
   item.classList.remove('popup_is-opened');
   item.addEventListener('click', function (evt) {
     evt.target.classList.remove('popup_is-opened');
@@ -19,15 +19,14 @@ export function closeModal(item) {
 
 }
 
+// закрыть попап по нажатию на Esc
 function closePopupEsc(item) {
-  "закрыть попап по нажатию на Esc"
   document.addEventListener('keydown', function (evt) {
     if(evt.key === 'Escape') {
       item.classList.remove('popup_is-opened');
     }
   }); 
 }
-
 
 // Вывод карточек на страницу 
 addCardList() 

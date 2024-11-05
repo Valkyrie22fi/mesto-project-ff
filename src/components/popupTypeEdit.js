@@ -10,8 +10,8 @@ const jobInput = document.querySelector('.popup__input_type_description');
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 
+// открыть попап редактирования
 function openPopupTypeEdit(item) {
-  "открыть попап редактирования"
   editButton.addEventListener('click', function () {
     openModal(popupTypeEdit);
     nameInput.value = profileTitle.textContent;
@@ -19,13 +19,14 @@ function openPopupTypeEdit(item) {
   });
 }
 
+// закрыть попап редактирования
 function closePopupTypeEdit() {
-  "закрыть попап редактирования"
   closeButtonPopupTypeEdit.addEventListener('click', function () {
     closeModal(popupTypeEdit);
   });
 }
 
+// обработка формы редактирования
 function editFormSubmit(evt) {
   evt.preventDefault();
   let name = nameInput.value;
