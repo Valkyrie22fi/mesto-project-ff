@@ -2,7 +2,7 @@ import './pages/index.css';
 import { addCardList } from './components/card.js';
 import { openPopupTypeEdit, closePopupTypeEdit, popupTypeEdit, formProfile, handleFormSubmit } from './components/popupTypeEdit.js';
 import './components/popupTypeImage.js';
-import './components/popupTypeNewCard.js'
+import { openPopupTypeNewCard, closePopupTypeNewCard, popupTypeNewCard, formNewCard, addCard } from './components/popupTypeNewCard.js'
 
 export function openPopup(item) {
   "открыть попап"
@@ -44,3 +44,12 @@ closePopupTypeEdit()
 closePopupOverlay(popupTypeEdit);
 // Обработка формы
 formProfile.addEventListener('submit', handleFormSubmit); 
+
+// Попап добавления новой карточки
+// Открытие
+openPopupTypeNewCard() 
+// Закрытие
+closePopupTypeNewCard() 
+closePopupOverlay(popupTypeNewCard);
+// Обработка формы
+formNewCard.addEventListener('submit', addCard); 
