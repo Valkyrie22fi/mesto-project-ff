@@ -27,7 +27,7 @@ function deleteCard(card) {
 function likeButton(item) {
   const likeButton = item.querySelector('.card__like-button');
   likeButton.addEventListener('click', function () {
-    likeButton.classList.add('card__like-button_is-active');
+    likeButton.classList.toggle('card__like-button_is-active');
   });
 }
 
