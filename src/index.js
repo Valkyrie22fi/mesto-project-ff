@@ -6,7 +6,7 @@ import { openImage, closePopupTypeImage, popupTypeImage } from './components/pop
 
 export function openModal(item) {
   "открыть попап"
-  item.classList.add('popup_is-opened');
+  item.classList.add('popup_is-opened', 'popup_is-animated');
   closePopupEsc(item);
 }
 
@@ -31,6 +31,7 @@ export function closePopupOverlay(item) {
     evt.target.classList.remove('popup_is-opened');
   }); 
 }
+
 
 // Вывод карточек на страницу 
 addCardList() 
