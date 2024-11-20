@@ -7,27 +7,28 @@ import { closePopupTypeImage, popupTypeImage } from './components/popupTypeImage
 // открыть попап
 export function openModal(item) {
   item.classList.add('popup_is-opened', 'popup_is-animated');
-  closePopupEsc(item);
+  item.removeEventListener('click', openPopupClick);
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 // закрыть попап
 export function closeModal(item) {
   item.classList.remove('popup_is-opened');
-  item.addEventListener('click', function (evt) {
-    evt.target.classList.remove('popup_is-opened');
-  }); 
+  item.addEventListener('click', openPopupClick); 
+  item.removeEventListener('keydown', closePopupEsc);
+}
 
+// открыть попап по клику
+function openPopupClick(evt) {
+  evt.target.classList.remove('popup_is-opened');
 }
 
 // закрыть попап по нажатию на Esc
-function closePopupEsc(item) {
-  document.addEventListener('keydown', function (evt) {
-    if(evt.key === 'Escape') {
-      item.classList.remove('popup_is-opened');
-    }
-  }); 
+function closePopupEsc(evt) {
+  if(evt.key === 'Escape') {
+    document.querySelector('.popup_is-opened').classList.remove('popup_is-opened');
+  }
 }
-
 // Вывод карточек на страницу 
 addCardList() 
 
