@@ -1,5 +1,5 @@
 import './pages/index.css';
-import { likeButton, createCard, deleteCard } from './components/card.js';
+import { clickLike, createCard, deleteCard } from './components/card.js';
 import { initialCards } from './components/cards.js';
 import { openModal, closeModal } from './components/modal.js';
 
@@ -10,14 +10,12 @@ const cardsList = document.querySelector('.places__list');
 // вывести все карточки на страницу 
 function addCardList() {
   initialCards.forEach((el) => { 
-    const card = createCard(el.name, el.link, deleteCard)
+    const card = createCard(el.name, el.link, deleteCard, clickLike)
     //открытие модального окна картинки
     const cardImage = card.querySelector('.card__image')
     cardImage.addEventListener('click', function () {
       openImage(el.name, el.link );
     });
-
-    likeButton(card);
 
     cardsList.append(card) 
   }) 

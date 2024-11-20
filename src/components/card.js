@@ -1,11 +1,13 @@
 // Темплейт карточки 
-const cardTemplate = document.querySelector('#card-template').content; 
+const cardTemplate = document.querySelector('#card-template').content;
+
 
 // создать и вернуть элемент карточки
-function createCard(name, link, deleteCallback) {
+function createCard(name, link, deleteCallback, clickLike) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitle = cardElement.querySelector('.card__title')
   const cardImage = cardElement.querySelector('.card__image')
+  const likeButton = cardElement.querySelector('.card__like-button');
   const deleteButton = cardElement.querySelector('.card__delete-button'); 
   cardTitle.textContent = name; 
   cardImage.src = link; 
@@ -14,6 +16,8 @@ function createCard(name, link, deleteCallback) {
   deleteButton.addEventListener('click', () => { 
     deleteCallback(cardElement) 
   }); 
+
+  likeButton.addEventListener('click', clickLike)
 
   return cardElement; 
 } 
@@ -24,11 +28,14 @@ function deleteCard(card) {
 }; 
 
 // поставить лайк на карточку
-function likeButton(item) {
-  const likeButton = item.querySelector('.card__like-button');
-  likeButton.addEventListener('click', function () {
-    likeButton.classList.toggle('card__like-button_is-active');
-  });
+function clickLike(evt) {
+  if (evt.target.classList.contains('card__like-button')) {
+    like(evt.target);
+  }
 }
 
-export { likeButton, createCard, deleteCard };
+function like(item) {
+  item.classList.toggle('card__like-button_is-active');
+}
+
+export { clickLike, createCard, deleteCard };
