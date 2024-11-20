@@ -1,6 +1,3 @@
-import { openImage} from './popupTypeImage.js'
-import { createCard, deleteCard, likeButton, } from './card.js'
-
 const initialCards = [
   {
     name: "Архыз",
@@ -28,22 +25,6 @@ const initialCards = [
   }
 ];
 
-const cardsList = document.querySelector('.places__list'); 
 
-// вывести все карточки на страницу 
-function addCardList() {
-  initialCards.forEach((el) => { 
-    const card = createCard(el.name, el.link, deleteCard)
-    //открытие модального окна картинки
-    const cardImage = card.querySelector('.card__image')
-    cardImage.addEventListener('click', function () {
-      openImage(el.name, el.link );
-    });
 
-    likeButton(card);
-
-    cardsList.append(card) 
-  }) 
-}; 
-
-export { addCardList, cardsList };
+export { initialCards };
