@@ -98,13 +98,12 @@ function addCard(evt) {
   const name = newPlaceNameInput.value;
   const link = newPlaceLinkInput.value;
 
-  const card = createCard(name, link, deleteCard)
+  const card = createCard(name, link, deleteCard, clickLike)
    //открытие модального окна картинки
    const cardImage = card.querySelector('.card__image')
    cardImage.addEventListener('click', function () {
      openImage(name, link);
    });
-   likeButton(card);
   cardsList.prepend(card);
   closeModal(popupTypeNewCard);
   newPlaceNameInput.value = "";
