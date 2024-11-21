@@ -3,7 +3,7 @@ const cardTemplate = document.querySelector('#card-template').content;
 
 
 // создать и вернуть элемент карточки
-function createCard(name, link, deleteCallback, clickLike) {
+function createCard(name, link, deleteCallback, clickLike, openImage) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitle = cardElement.querySelector('.card__title')
   const cardImage = cardElement.querySelector('.card__image')
@@ -12,6 +12,11 @@ function createCard(name, link, deleteCallback, clickLike) {
   cardTitle.textContent = name; 
   cardImage.src = link; 
   cardImage.alt = name;
+
+  //открытие модального окна картинки
+  cardImage.addEventListener('click', function () {
+    openImage(name, link );
+  });
  
   deleteButton.addEventListener('click', () => { 
     deleteCallback(cardElement) 

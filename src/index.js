@@ -10,13 +10,7 @@ const cardsList = document.querySelector('.places__list');
 // вывести все карточки на страницу 
 function addCardList() {
   initialCards.forEach((el) => { 
-    const card = createCard(el.name, el.link, deleteCard, clickLike)
-    //открытие модального окна картинки
-    const cardImage = card.querySelector('.card__image')
-    cardImage.addEventListener('click', function () {
-      openImage(el.name, el.link );
-    });
-
+    const card = createCard(el.name, el.link, deleteCard, clickLike, openImage)
     cardsList.append(card) 
   }) 
 }; 
@@ -102,13 +96,7 @@ function addCard(evt) {
   evt.preventDefault();
   const name = newPlaceNameInput.value;
   const link = newPlaceLinkInput.value;
-
-  const card = createCard(name, link, deleteCard, clickLike)
-   //открытие модального окна картинки
-   const cardImage = card.querySelector('.card__image')
-   cardImage.addEventListener('click', function () {
-     openImage(name, link);
-   });
+  const card = createCard(name, link, deleteCard, clickLike, openImage)
   cardsList.prepend(card);
   closeModal(popupTypeNewCard);
   newPlaceNameInput.value = "";
