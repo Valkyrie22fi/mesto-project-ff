@@ -29,13 +29,7 @@ function deleteCard(card) {
 
 // поставить лайк на карточку
 function clickLike(evt) {
-  if (evt.target.classList.contains('card__like-button')) {
-    like(evt.target);
-  }
-}
-
-function like(item) {
-  item.classList.toggle('card__like-button_is-active');
+  evt.target.classList.toggle('card__like-button_is-active');
 }
 
 export { clickLike, createCard, deleteCard };
