@@ -22,8 +22,14 @@ function addCardList() {
 }; 
 addCardList() 
 
-// Попап редактирования
+// Добавление анимации попапа
+// Константы
+const popup = document.querySelector('.popup');
+// Добавление класса анимации
+popup.classList.add('popup_is-animated');
 
+
+// Попап редактирования
 // Константы
 const editButton = document.querySelector('.profile__edit-button');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
@@ -66,7 +72,6 @@ function editFormSubmit(evt) {
 formProfile.addEventListener('submit', editFormSubmit); 
 
 // Попап добавления новой карточки
-
 // Константы
 const addButton = document.querySelector('.profile__add-button');
 const popupTypeNewCard = document.querySelector('.popup_type_new-card');
@@ -113,8 +118,8 @@ function addCard(evt) {
 // Обработка формы
 formNewCard.addEventListener('submit', addCard); 
 
-// Попап открытия картинки по клику
 
+// Попап открытия картинки по клику
 // Константы
 const popupTypeImage = document.querySelector('.popup_type_image');
 const closeButtonPopupTypeImage = popupTypeImage.querySelector('.popup__close');
