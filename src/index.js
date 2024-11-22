@@ -18,9 +18,9 @@ addCardList()
 
 // Добавление анимации попапа
 // Константы
-const popup = document.querySelector('.popup');
-// Добавление класса анимации
-popup.classList.add('popup_is-animated');
+const popups = document.querySelectorAll('.popup');
+popups.forEach((el) => el.classList.add('popup_is-animated'))
+
 
 
 // Попап редактирования
