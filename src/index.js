@@ -16,13 +16,6 @@ function addCardList() {
 }; 
 addCardList() 
 
-// Добавление анимации попапа
-// Константы
-const popups = document.querySelectorAll('.popup');
-popups.forEach((el) => el.classList.add('popup_is-animated'))
-
-
-
 // Попап редактирования
 // Константы
 const editButton = document.querySelector('.profile__edit-button');
