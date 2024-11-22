@@ -1,6 +1,6 @@
 // открыть попап
 export function openModal(item) {
-  item.classList.add('popup_is-opened', 'popup_is-animated');
+  item.classList.add('popup_is-opened');
   item.addEventListener('click', closePopupOverlay); 
   document.addEventListener('keydown', closePopupEsc);
 }
