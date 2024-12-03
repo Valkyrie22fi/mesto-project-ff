@@ -29,7 +29,7 @@
 .popup__input_type_error {
   border-bottom: #ff0000 solid 1px;
 }
-.popup__input-error_active {
+.popup__error_visible {
   opacity: 1;
 }
 
