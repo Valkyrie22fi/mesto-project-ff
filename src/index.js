@@ -109,13 +109,12 @@ closeButtonPopupTypeImage.addEventListener('click', function () {
 // Валидация
 const formElement = document.querySelector('.popup__form');
 const formInput = formElement.querySelector('.popup__input');
-const formError = formElement.querySelector(`.${formInput.id}-error`);
 
 const showError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add('popup__input_type_error');
-  if (inputElement.validity.patternMismatch) {
-    errorElement.textContent = "Может содержать только латинские и кириллические буквы, знаки дефиса и пробелы"
+  if (inputElement.validity.patternMismatch && inputElement.id !== "link-input") {
+    errorElement.textContent = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
   } else {
     errorElement.textContent = errorMessage;
   }
@@ -146,7 +145,6 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    
     buttonElement.disabled = true;
     buttonElement.classList.add('button_inactive');
   } else {
@@ -158,7 +156,6 @@ const toggleButtonState = (inputList, buttonElement) => {
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
   const buttonElement = formElement.querySelector('.popup__button');
-  console.log(inputList)
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
