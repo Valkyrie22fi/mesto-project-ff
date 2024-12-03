@@ -107,8 +107,19 @@ closeButtonPopupTypeImage.addEventListener('click', function () {
   closeModal(popupTypeImage);
 });
 
+
+
 // Валидация
-enableValidation();
+const formClasses = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+
+enableValidation(formClasses);
 
 // очистка ошибок валидации вызовом clearValidation
 //clearValidation(profileForm, validationConfig);
