@@ -54,6 +54,7 @@
                 maxlength="40"
                 required
                 pattern="^[А-Яа-яЁёA-Za-z\- ]+$"
+                data-error="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               />
               <span class="popup__input-error name-input-error"></span>
             </label>
@@ -68,6 +69,7 @@
                 maxlength="200"
                 required
                 pattern="^[А-Яа-яЁёA-Za-z\- ]+$"
+                data-error="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               />
               <span class="popup__input-error description-input-error"></span>
             </label>
@@ -102,7 +104,8 @@
                 id="link-input"
                 class="popup__input popup__input_type_url"
                 placeholder="Ссылка на картинку"
-                pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+                pattern="/https?:\/\/\S+/g"
+                data-error="Неверный адрес страницы. Введите адрес сайта"
                 required
               />
               <span class="popup__input-error link-input-error"></span>

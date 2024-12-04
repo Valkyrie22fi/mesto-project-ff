@@ -3,8 +3,8 @@ const formElement = document.querySelector('.popup__form');
 const showError = (formElement, inputElement, errorMessage, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
-  if (inputElement.validity.patternMismatch && inputElement.id !== "link-input") {
-    errorElement.textContent = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+  if (inputElement.validity.patternMismatch) {
+    errorElement.textContent = inputElement.dataset.error;
   } else {
     errorElement.textContent = errorMessage;
   }

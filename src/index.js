@@ -122,4 +122,7 @@ const formClasses = {
 enableValidation(formClasses);
 
 // очистка ошибок валидации вызовом clearValidation
-//clearValidation(profileForm, validationConfig);
+// const clearValidation = (profileForm, validationConfig) => {
+
+// }
+// clearValidation(profileForm, validationConfig);
