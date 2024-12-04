@@ -110,7 +110,8 @@ closeButtonPopupTypeImage.addEventListener('click', function () {
 
 
 // Валидация
-const formClasses = {
+const profileForm = document.querySelector('.popup__form');
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -119,7 +120,7 @@ const formClasses = {
   errorClass: 'popup__error_visible'
 }
 
-enableValidation(formClasses);
+enableValidation(profileForm, validationConfig);
 
 // очистка ошибок валидации вызовом clearValidation
 // const clearValidation = (profileForm, validationConfig) => {

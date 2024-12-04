@@ -1,5 +1,3 @@
-const formElement = document.querySelector('.popup__form');
-
 const showError = (formElement, inputElement, errorMessage, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
@@ -49,17 +47,20 @@ const setEventListeners = (formElement, formClasses) => {
   toggleButtonState(inputList, buttonElement, formClasses.inactiveButtonClass);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement, formClasses.inputErrorClass, formClasses.errorClass);
-      toggleButtonState(inputList, buttonElement, formClasses.inactiveButtonClass);
+      changeValidation(formElement, formClasses, inputList, inputElement, buttonElement);
     });
   });
 };
 
+// Проверка валидации инпутов и переключение состояния кнопки
+export const changeValidation = (formElement, formClasses, inputList, inputElement, buttonElement) => {
+  checkInputValidity(formElement, inputElement, formClasses.inputErrorClass, formClasses.errorClass);
+  toggleButtonState(inputList, buttonElement, formClasses.inactiveButtonClass);
+}
+
 // Включить валидацию
-export const enableValidation = (formClasses) => {
+export const enableValidation = (formElement, formClasses) => {
   const formList = Array.from(document.querySelectorAll(formClasses.formSelector));
-
-
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
