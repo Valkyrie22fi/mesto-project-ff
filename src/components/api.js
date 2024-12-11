@@ -8,7 +8,10 @@ const config = {
 }
 
 const handleResponse = (response) => {
-  return response.json();
+  if (response.ok) {
+    return response.json();
+  }
+  return Promise.reject(`Ошибка: ${response.status}`);
 };
 
 // GET запрос загрузки карточек

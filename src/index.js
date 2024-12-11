@@ -22,6 +22,9 @@ function addCardList() {
         cardsList.append(card) 
     }) 
   })
+  .catch((err) => {
+    renderError(`Ошибка: ${err}`)
+  })
 }; 
 addCardList() 
 
@@ -30,10 +33,14 @@ function addUserInfo() {
   const avatar = document.querySelector('.profile__image');
   const userName = document.querySelector('.profile__title');
   const userAbout = document.querySelector('.profile__description');
-  getUserInfo().then((data) => {
+  getUserInfo()
+  .then((data) => {
     avatar.style.backgroundImage = `url(${data.avatar})`;
     userName.textContent = data.name;
     userAbout.textContent = data.about;
+  })
+  .catch((err) => {
+    renderError(`Ошибка: ${err}`)
   })
 }; 
 addUserInfo();
