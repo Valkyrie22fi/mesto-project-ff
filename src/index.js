@@ -173,7 +173,7 @@ function addCard(evt) {
   renderLoading(true, popupButtonTypeNewCard)
   const name = newPlaceNameInput.value;
   const link = newPlaceLinkInput.value;
-  const likes = "";
+  const likes = 0;
   const isOwner = true;
   const id = "";
   const card = createCard(name, link, likes, id, deleteCard, clickLike, openImage, isOwner)
