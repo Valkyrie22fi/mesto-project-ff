@@ -3,15 +3,20 @@ const cardTemplate = document.querySelector('#card-template').content;
 
 
 // создать и вернуть элемент карточки
-function createCard(name, link, deleteCallback, clickLike, openImage, isOwner) {
+function createCard(name, link, likes, deleteCallback, clickLike, openImage, isOwner) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitle = cardElement.querySelector('.card__title')
   const cardImage = cardElement.querySelector('.card__image')
   const likeButton = cardElement.querySelector('.card__like-button');
-  const deleteButton = cardElement.querySelector('.card__delete-button'); 
+  const likeCount = cardElement.querySelector('.card__like-count'); 
+  const deleteButton = cardElement.querySelector('.card__delete-button');
+  if (!isOwner) {
+    deleteButton.classList.add('hidden');
+  }
   cardTitle.textContent = name; 
   cardImage.src = link; 
   cardImage.alt = name;
+  likeCount.textContent = likes;
 
   //открытие модального окна картинки
   cardImage.addEventListener('click', function () {
@@ -19,7 +24,7 @@ function createCard(name, link, deleteCallback, clickLike, openImage, isOwner) {
   });
  
   if (isOwner) {
-    deleteButton.classList.add('visible');
+    deleteButton.classList.remove('hidden');
     deleteButton.addEventListener('click', () => { 
       deleteCallback(cardElement) 
     }); 

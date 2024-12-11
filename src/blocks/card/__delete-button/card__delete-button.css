@@ -7,7 +7,6 @@
   background-size: 18px 18px;
   border: none;
   cursor: pointer;
-  display: none;
   position: absolute;
   top: 18px;
   right: 15px;
@@ -24,6 +23,6 @@
   opacity: 0.6;
 }
 
-.card__delete-button.visible {
-  display: block;
+.card__delete-button.hidden {
+  display: none;
 }

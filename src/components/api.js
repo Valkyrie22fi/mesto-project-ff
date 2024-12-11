@@ -25,6 +25,21 @@ export const getUserInfo = () => {
   }).then(handleResponse)
 }
 
+// PATCH редактирование профиля
+export const patchUserInfo = ({name, about}) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      authorization: TOKEN,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name,
+      about
+    })
+  });
+}
+
 // POST запрос добавления карточки
 export const postCards = ({name, link}) => {
   return fetch(`${BASE_URL}/cards`, {
