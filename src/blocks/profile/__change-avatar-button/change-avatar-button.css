@@ -1,0 +1,14 @@
+.profile__change-avatar-button {
+  background: inherit;
+  border: none;
+  cursor: pointer;
+  margin: 0 29px 0 0;
+  position: relative;
+}
+
+.profile__change-avatar-button:hover .profile__image:before {
+  opacity: 0.8;
+}
+.profile__change-avatar-button:hover .profile__image:after {
+  opacity: 1;
+}

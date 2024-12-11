@@ -57,3 +57,63 @@ export const postCards = ({name, link}) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
   }); ;
 }
+
+// DELETE запрос удаления карточки
+export const removeCard = (cardId) => {
+  return fetch(`${BASE_URL}/cards/${cardId}`, {
+    method: "DELETE",
+    headers: {
+      authorization: TOKEN,
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+  }).then(handleResponse)
+  .catch((err) => {
+    console.log('Ошибка. Запрос не выполнен: ', err)
+  }); ;
+}
+
+// PUT постановка лайка
+export const likeCard = (cardId) => {
+  return fetch(`${BASE_URL}/cards/likes/${cardId}`, {
+    method: "PUT",
+    headers: {
+      authorization: TOKEN,
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+  }).then(handleResponse)
+  .catch((err) => {
+    console.log('Ошибка. Запрос не выполнен: ', err)
+  }); ;
+}
+
+// DELETE снятие лайка
+export const unlikeCard = (cardId) => {
+  return fetch(`${BASE_URL}/cards/likes/${cardId}`, {
+    method: "DELETE",
+    headers: {
+      authorization: TOKEN,
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+  }).then(handleResponse)
+  .catch((err) => {
+    console.log('Ошибка. Запрос не выполнен: ', err)
+  }); ;
+}
+
+// PATCH обновление аватарки
+export const changeAvatar = ({avatar}) => {
+  console.log('avatar', avatar)
+  return fetch(`${BASE_URL}/users/me/avatar`, {
+    method: "PATCH",
+    headers: {
+      authorization: TOKEN,
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify({
+      avatar
+    }),
+  }).then(handleResponse)
+  .catch((err) => {
+    console.log('Ошибка. Запрос не выполнен: ', err)
+  }); ;
+}
