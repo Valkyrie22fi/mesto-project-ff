@@ -14,6 +14,7 @@ const hideError = (formElement, inputElement, inputErrorClass, errorClass) => {
   inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = '';
+  
 };
 
 const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass) => {
@@ -53,13 +54,13 @@ const setEventListeners = (formElement, formClasses) => {
 };
 
 // Проверка валидации инпутов и переключение состояния кнопки
-export const changeValidation = (formElement, formClasses, inputList, inputElement, buttonElement) => {
-  checkInputValidity(formElement, inputElement, formClasses.inputErrorClass, formClasses.errorClass);
+export const changeValidation = (profileForm, formClasses, inputList, inputElement, buttonElement) => {
+  checkInputValidity(profileForm, inputElement, formClasses.inputErrorClass, formClasses.errorClass);
   toggleButtonState(inputList, buttonElement, formClasses.inactiveButtonClass);
 }
 
 // Включить валидацию
-export const enableValidation = (formElement, formClasses) => {
+export const enableValidation = (formClasses) => {
   const formList = Array.from(document.querySelectorAll(formClasses.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
@@ -68,3 +69,14 @@ export const enableValidation = (formElement, formClasses) => {
     setEventListeners(formElement, formClasses);
   });
 };
+
+// Очистка ошибок валидации вызовом clearValidation
+export const clearValidation = (profileForm, formClasses) => {
+  const inputList = Array.from(profileForm.querySelectorAll(formClasses.inputSelector));
+  const buttonElement = profileForm.querySelector(formClasses.submitButtonSelector);
+  buttonElement.disabled = true;
+  buttonElement.classList.add(formClasses.inactiveButtonClass);
+  inputList.forEach((inputElement) => {
+    hideError(profileForm, inputElement, formClasses.inputErrorClass, formClasses.errorClass);
+  });
+}
