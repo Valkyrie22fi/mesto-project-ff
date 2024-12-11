@@ -3,7 +3,7 @@ const cardTemplate = document.querySelector('#card-template').content;
 
 
 // создать и вернуть элемент карточки
-function createCard(name, link, deleteCallback, clickLike, openImage) {
+function createCard(name, link, deleteCallback, clickLike, openImage, isOwner) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitle = cardElement.querySelector('.card__title')
   const cardImage = cardElement.querySelector('.card__image')
@@ -18,9 +18,13 @@ function createCard(name, link, deleteCallback, clickLike, openImage) {
     openImage(name, link );
   });
  
-  deleteButton.addEventListener('click', () => { 
-    deleteCallback(cardElement) 
-  }); 
+  if (isOwner) {
+    deleteButton.classList.add('visible');
+    deleteButton.addEventListener('click', () => { 
+      deleteCallback(cardElement) 
+    }); 
+  }
+  
 
   likeButton.addEventListener('click', clickLike)
 

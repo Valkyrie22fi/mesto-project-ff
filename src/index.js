@@ -2,18 +2,23 @@ import './pages/index.css';
 import { clickLike, createCard, deleteCard } from './components/card.js';
 import { openModal, closeModal } from './components/modal.js';
 import { enableValidation, clearValidation } from './components/validation.js';
-import { getCards, getUserInfo, postCards } from './components/api.js';
+import { getCards, getUserInfo, postCards, TOKEN } from './components/api.js';
 
 // Вывод карточек на страницу 
 const cardsList = document.querySelector('.places__list'); 
 
 // вывести все карточки на страницу 
 function addCardList() {
-  getCards().then((data) => {
-    return data.forEach((el) => { 
-      const card = createCard(el.name, el.link, deleteCard, clickLike, openImage)
-      cardsList.append(card) 
+  Promise.all([getCards(), getUserInfo()])
+  .then(([allCards, aboutMe]) => {
+    allCards.forEach((el) => { 
+        const isOwner = (aboutMe._id === el.owner._id);
+        console.log('isOwner', isOwner)
+        const card = createCard(el.name, el.link, deleteCard, clickLike, openImage, isOwner)
+        cardsList.append(card) 
+      
     }) 
+      
   })
 }; 
 addCardList() 
