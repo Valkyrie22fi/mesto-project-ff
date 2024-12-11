@@ -1,5 +1,11 @@
-export const BASE_URL = "https://nomoreparties.co/v1/wff-cohort-22";
-export const TOKEN = "5779ed29-805b-4362-b372-0770a26315b6";
+
+const config = {
+  baseUrl: 'https://nomoreparties.co/v1/wff-cohort-22',
+  headers: {
+    authorization: '5779ed29-805b-4362-b372-0770a26315b6',
+    'Content-Type': 'application/json'
+  }
+}
 
 const handleResponse = (response) => {
   return response.json();
@@ -7,32 +13,25 @@ const handleResponse = (response) => {
 
 // GET запрос загрузки карточек
 export const getCards = () => {
-  return fetch(`${BASE_URL}/cards`, {
+  return fetch(`${config.baseUrl}/cards`, {
     method: "GET",
-    headers: {
-      authorization: TOKEN
-    },
+    headers: config.headers,
   }).then(handleResponse)
 }
 
 // GET запрос загрузки информации о пользователе
 export const getUserInfo = () => {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: "GET",
-    headers: {
-      authorization: TOKEN
-    },
+    headers: config.headers,
   }).then(handleResponse)
 }
 
 // PATCH редактирование профиля
 export const patchUserInfo = ({name, about}) => {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
-    headers: {
-      authorization: TOKEN,
-      'Content-Type': 'application/json'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       name,
       about
@@ -42,12 +41,9 @@ export const patchUserInfo = ({name, about}) => {
 
 // POST запрос добавления карточки
 export const postCards = ({name, link}) => {
-  return fetch(`${BASE_URL}/cards`, {
+  return fetch(`${config.baseUrl}/cards`, {
     method: "POST",
-    headers: {
-      authorization: TOKEN,
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       name,
       link
@@ -60,12 +56,9 @@ export const postCards = ({name, link}) => {
 
 // DELETE запрос удаления карточки
 export const removeCard = (cardId) => {
-  return fetch(`${BASE_URL}/cards/${cardId}`, {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
-    headers: {
-      authorization: TOKEN,
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
+    headers: config.headers,
   }).then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
@@ -74,12 +67,9 @@ export const removeCard = (cardId) => {
 
 // PUT постановка лайка
 export const likeCard = (cardId) => {
-  return fetch(`${BASE_URL}/cards/likes/${cardId}`, {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "PUT",
-    headers: {
-      authorization: TOKEN,
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
+    headers: config.headers,
   }).then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
@@ -88,12 +78,9 @@ export const likeCard = (cardId) => {
 
 // DELETE снятие лайка
 export const unlikeCard = (cardId) => {
-  return fetch(`${BASE_URL}/cards/likes/${cardId}`, {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "DELETE",
-    headers: {
-      authorization: TOKEN,
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
+    headers: config.headers,
   }).then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
@@ -102,13 +89,9 @@ export const unlikeCard = (cardId) => {
 
 // PATCH обновление аватарки
 export const changeAvatar = ({avatar}) => {
-  console.log('avatar', avatar)
-  return fetch(`${BASE_URL}/users/me/avatar`, {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: "PATCH",
-    headers: {
-      authorization: TOKEN,
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       avatar
     }),
