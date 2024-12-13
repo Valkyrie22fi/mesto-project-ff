@@ -14,6 +14,15 @@ const handleResponse = (response) => {
   return Promise.reject(`Ошибка: ${response.status}`);
 };
 
+const handleDeleteResponse = (response) => {
+  if (response.ok) {
+    let data = response.json()
+    let status = response.status
+    return { data, status }
+  }
+  return Promise.reject(`Ошибка: ${response.status}`);
+};
+
 // GET запрос загрузки карточек
 export const getCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
@@ -54,15 +63,15 @@ export const postCards = ({name, link}) => {
   }).then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
-  }); ;
+  });
 }
 
 // DELETE запрос удаления карточки
 export const removeCard = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+  return fetch(`${config.baseUrl}/cards/${cardId}1`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(handleResponse)
+  }).then(handleDeleteResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
   }); ;
@@ -84,7 +93,7 @@ export const unlikeCard = (cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(handleResponse)
+  }).then(handleDeleteResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
   }); ;
