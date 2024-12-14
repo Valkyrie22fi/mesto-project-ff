@@ -130,12 +130,10 @@ function editFormSubmit(evt) {
   const name = nameInput.value;
   const about = jobInput.value; 
   patchUserInfo({name, about})
-  .then((response) => {
-    if (response.ok) {
-      profileTitle.textContent = name;
-      profileDescription.textContent = about;
+  .then((data) => {
+      profileTitle.textContent = data.name;
+      profileDescription.textContent = data.about;
       closeModal(popupTypeEdit);
-    }
   })
   .catch((err) => {
     renderError(`Ошибка: ${err}`)

@@ -46,10 +46,8 @@ function createCard(name, link, likes, id, deleteCallback, clickLike, openImage,
 // удалить карточку
 function deleteCard(card) {
   removeCard(card.id)
-  .then((result) => {
-    if (result.status === 200) {
-      card.remove();
-    }
+  .then(() => {
+    card.remove();
   })
   .catch((err) => {
     console.log(err)

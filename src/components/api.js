@@ -14,21 +14,16 @@ const handleResponse = (response) => {
   return Promise.reject(`Ошибка: ${response.status}`);
 };
 
-const handleDeleteResponse = (response) => {
-  if (response.ok) {
-    let data = response.json()
-    let status = response.status
-    return { data, status }
-  }
-  return Promise.reject(`Ошибка: ${response.status}`);
-};
-
 // GET запрос загрузки карточек
 export const getCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
     method: "GET",
     headers: config.headers,
-  }).then(handleResponse)
+  })
+  .then(handleResponse)
+  .catch((err) => {
+    console.log('Ошибка. Запрос не выполнен: ', err)
+  });
 }
 
 // GET запрос загрузки информации о пользователе
@@ -36,7 +31,11 @@ export const getUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: "GET",
     headers: config.headers,
-  }).then(handleResponse)
+  })
+  .then(handleResponse)
+  .catch((err) => {
+    console.log('Ошибка. Запрос не выполнен: ', err)
+  });
 }
 
 // PATCH редактирование профиля
@@ -48,6 +47,10 @@ export const patchUserInfo = ({name, about}) => {
       name,
       about
     })
+  })
+  .then(handleResponse)
+  .catch((err) => {
+    console.log('Ошибка. Запрос не выполнен: ', err)
   });
 }
 
@@ -60,7 +63,8 @@ export const postCards = ({name, link}) => {
       name,
       link
     }),
-  }).then(handleResponse)
+  })
+  .then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
   });
@@ -68,10 +72,10 @@ export const postCards = ({name, link}) => {
 
 // DELETE запрос удаления карточки
 export const removeCard = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/${cardId}1`, {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(handleDeleteResponse)
+  }).then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
   }); ;
@@ -82,7 +86,8 @@ export const likeCard = (cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "PUT",
     headers: config.headers,
-  }).then(handleResponse)
+  })
+  .then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
   }); ;
@@ -93,10 +98,11 @@ export const unlikeCard = (cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(handleDeleteResponse)
+  })
+  .then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
-  }); ;
+  });
 }
 
 // PATCH обновление аватарки
@@ -107,8 +113,9 @@ export const changeAvatar = ({avatar}) => {
     body: JSON.stringify({
       avatar
     }),
-  }).then(handleResponse)
+  })
+  .then(handleResponse)
   .catch((err) => {
     console.log('Ошибка. Запрос не выполнен: ', err)
-  }); ;
+  });
 }
